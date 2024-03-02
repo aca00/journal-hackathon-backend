@@ -1,0 +1,29 @@
+version: "3"
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: aca
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: hack
+    ports:
+      - "15432:5432"
+    volumes:
+      - /home/aca/ideaProjects/journal/src/main/resources/db/db-init/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+      - /home/aca/ideaProjects/journal/src/main/resources/db/db-init/init-table.sql
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=aca@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=123456
+    ports:
+      - 8989:80
+    depends_on:
+      - db
+#  java:
+#    image: myapp
+#    ports:
+#      - 9091:8989
+#    depends_on:
+#      - db

@@ -1,0 +1,78 @@
+server:
+  port: 9090
+spring:
+  main:
+    banner-mode: "off"
+  output:
+    ansi:
+      enabled: ALWAYS
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true  # (Optional) To format JSON responses
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: akhilca2000@gmail.com
+    password: "bxdzisopexizrlaz"
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:15432/hack
+    username: aca
+    password: 12345
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql
+  data:
+    rest:
+      basePath: "api/v1/diary"
+springdoc:
+  swagger-ui:
+    operations-sorter: method
+
+config:
+  root-user-name: aca
+  root-user-email: akhilca2000@gmail.com
+  root-user-password: 12345
+  jwt-secret-key: "GWj5evZR07qh7tPG8k2pe/bzGrarylxlcH/r3jyXjCEvQAljXzH//JJ2lOsizGA6"
+  jasper-template-path: ""
+  purchase-limit:
+    role-user: 5
+    role-agent: 5000
+  order-return-period:
+    days: 10
+
+logging:
+  file:
+    path: .
+    name: shopping-api.log
+  level:
+    org:
+      thymeleaf: OFF
+      springframework:
+        security: DEBUG
+    com:
+      aca:
+        shoppingapi: DEBUG
+
+management:
+  endpoint:
+    logfile:
+      external_file: ./journal.log
+  endpoints:
+    web:
+      exposure:
+        include: logfile
+
+
